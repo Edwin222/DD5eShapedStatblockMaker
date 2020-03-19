@@ -5,8 +5,172 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DD5eShapedStatblockMaker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="800" Width="850">
+    <Grid ShowGridLines="True" Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
+        <!-- LeftPanel -->
+        <Grid ShowGridLines="True">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+
+                <Style TargetType="TextBox">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!-- Personal Information -->
+            <StackPanel Grid.Row="0">
+                <TextBox x:Name="Name" Text="Name" FontSize="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="Size" SelectedIndex="0">
+                        <ComboBoxItem Content="Medium"/>
+                    </ComboBox>
+                    <ComboBox x:Name="Type" SelectedIndex="0">
+                        <ComboBoxItem Content="Humanoid"/>
+                    </ComboBox>
+                    <TextBlock Text="("/>
+                    <TextBox x:Name="Tag" Text="Tag"/>
+                    <TextBlock Text="), "/>
+                    <TextBox x:Name="Alignment" Text="unaligned"/>
+                </StackPanel>
+            </StackPanel>
+            <!-- AC & HP & Speed -->
+            <StackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Armor Class " FontWeight="Bold" />
+                    <TextBox x:Name="ArmorClass" Text="10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Initiative " FontWeight="Bold" />
+                    <TextBox x:Name="Initiative" Text="0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" Text="Hit Points  "/>
+                    <TextBlock x:Name="HitPoints" Text="22"/>
+                    <TextBlock Text="  ("/>
+                    <TextBox x:Name="HitDice" Text="4d8+4"/>
+                    <TextBlock Text=")"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Speed " FontWeight="Bold"/>
+                    <TextBox x:Name="WalkSpeed" Text="30ft"/>
+                    <TextBlock Text=", burrow "/>
+                    <TextBox x:Name="BurrowSpeed" Text="30ft"/>
+                    <TextBlock Text=", fly "/>
+                    <TextBox x:Name="FlySpeed" Text="30ft (hover)"/>
+                    <TextBlock Text=", swim "/>
+                    <TextBox x:Name="SwimSpeed" Text="30ft"/>
+                </StackPanel>
+            </StackPanel>
+            <!-- Ability Score-->
+            <Grid ShowGridLines="True" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="STR" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                <TextBlock Text="DEX" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                <TextBlock Text="CON" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0"/>
+                <TextBlock Text="INT" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0"/>
+                <TextBlock Text="WIS" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="0"/>
+                <TextBlock Text="CHA" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1">
+                    <TextBox x:Name="Str" Text="10"/>
+                    <TextBlock x:Name="StrMod" Text="(+0)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                    <TextBox x:Name="Dex" Text="10"/>
+                    <TextBlock x:Name="DexMod" Text="(+0)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1">
+                    <TextBox x:Name="Con" Text="10"/>
+                    <TextBlock x:Name="ConMod" Text="(+0)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="1">
+                    <TextBox x:Name="Int" Text="10"/>
+                    <TextBlock x:Name="IntMod" Text="(+0)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="1">
+                    <TextBox x:Name="Wis" Text="10"/>
+                    <TextBlock x:Name="WisMod" Text="(+0)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="1">
+                    <TextBox x:Name="Cha" Text="10"/>
+                    <TextBlock x:Name="ChaMod" Text="(+0)"/>
+                </StackPanel>
+            </Grid>
+            <!-- Skill & Save & Immunity -->
+            <StackPanel Grid.Row="3">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Saving Throws " FontWeight="Bold"/>
+                    <TextBox x:Name="SavingThrows"  Text="Str +2"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Skills  " FontWeight="Bold"/>
+                    <TextBox x:Name="Skills" Text="Arcana +12"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Damage Vulnerabilities  " FontWeight="Bold"/>
+                    <TextBox x:Name="DamageVulnerability" Text="Radiant"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Damage Resistances  " FontWeight="Bold"/>
+                    <TextBox x:Name="DamageResistance" Text="Cold, Lightning, Necrotic"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Damage Immunities  " FontWeight="Bold"/>
+                    <TextBox x:Name="DamageImmunity" Text="poison"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Condition Immunities  " FontWeight="Bold"/>
+                    <TextBox x:Name="ConditionImmunity" Text="charmed, deafened, exhaustion"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Senses  " FontWeight="Bold"/>
+                    <TextBox x:Name="Sense" Text="darkvision 60ft"/>
+                    <TextBlock Text=", passive Perception "/>
+                    <TextBlock x:Name="PassivePerception" Text="10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Languages  " FontWeight="Bold"/>
+                    <TextBox x:Name="Language" Text="Common"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Challenge  " FontWeight="Bold"/>
+                    <ComboBox SelectedIndex="0">
+                        <ComboBoxItem Content="21 (33,000 XP)"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+            <!-- Traits -->
+            <StackPanel Grid.Row="4">
+                
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
