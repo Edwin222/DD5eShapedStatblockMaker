@@ -1,8 +1,10 @@
 ﻿using DD5eShapedStatblockMaker.CharacterSheet;
+using DD5eShapedStatblockMaker.CharacterSheet.Definition;
 using DD5eShapedStatblockMaker.Data.Definition;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace DD5eShapedStatblockMaker
 {
@@ -32,40 +34,55 @@ namespace DD5eShapedStatblockMaker
             sheet.WriteData();
         }
 
-        private void PersoanlInfo_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (isLoaded)
-            {
-                sheet.PersonalInfo = new PersonalInfo(
-                    Sheet_Name.Text,
-                    (CreatureSize)Sheet_Size.SelectedIndex,
-                    (RacialType)Sheet_Type.SelectedIndex,
-                    Sheet_Tag.Text,
-                    Sheet_Alignment.Text);
-            }
+            RefreshSheet();
         }
 
-        private void PersonalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (isLoaded)
+            RefreshSheet();
+        }
+
+        private void AddMovementType_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new AddMovementTypeDialog();
+            var result = dialog.ShowDialog();
+
+            if (dialog.DialogResult.HasValue && dialog.DialogResult.Value == true)
             {
-                sheet.PersonalInfo = new PersonalInfo(
-                    Sheet_Name.Text,
-                    (CreatureSize)Sheet_Size.SelectedIndex,
-                    (RacialType)Sheet_Type.SelectedIndex,
-                    Sheet_Tag.Text,
-                    Sheet_Alignment.Text);
+                var insertIndex = Sheet_MovementType.Children.Count - 1;
+                var leadingText = new TextBlock();
+                leadingText.Text = $", {(MovementType)dialog.Sheet_MovementType.SelectedIndex} ";
+                var speedInputBox = new TextBox();
+                speedInputBox.TextChanged += new TextChangedEventHandler(TextChanged);
+                var trailingText = new TextBlock();
+                trailingText.Text = "ft";
+
+                leadingText.PreviewMouseDown += new MouseButtonEventHandler((obj, arg) =>
+                {
+                    Sheet_MovementType.Children.Remove(leadingText);
+                    Sheet_MovementType.Children.Remove(speedInputBox);
+                    Sheet_MovementType.Children.Remove(trailingText);
+                });
+
+                Sheet_MovementType.Children.Insert(insertIndex, trailingText);
+                Sheet_MovementType.Children.Insert(insertIndex, speedInputBox);
+                Sheet_MovementType.Children.Insert(insertIndex, leadingText);
             }
         }
 
         void RefreshSheet()
         {
-            sheet.PersonalInfo = new PersonalInfo(
-                Sheet_Name.Text,
-                (CreatureSize)Sheet_Size.SelectedIndex,
-                (RacialType)Sheet_Type.SelectedIndex,
-                Sheet_Tag.Text,
-                Sheet_Alignment.Text);
+            if (isLoaded)
+            {
+                sheet.PersonalInfo = new PersonalInfo(
+                    Sheet_Name.Text,
+                    (CreatureSize)Sheet_Size.SelectedIndex,
+                    (RacialType)Sheet_Type.SelectedIndex,
+                    Sheet_Tag.Text,
+                    Sheet_Alignment.Text);
+            }
         }
     }
 }

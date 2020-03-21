@@ -40,14 +40,14 @@
             </Grid.RowDefinitions>
             <!-- Personal Information -->
             <StackPanel Grid.Row="0">
-                <TextBox x:Name="Sheet_Name" Text="Name" FontSize="20" TextChanged="PersoanlInfo_TextChanged"/>
+                <TextBox x:Name="Sheet_Name" Text="Name" FontSize="20" TextChanged="TextChanged"/>
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox x:Name="Sheet_Size" SelectedIndex="0" SelectionChanged="PersonalInfo_SelectionChanged"/>
-                    <ComboBox x:Name="Sheet_Type" SelectedIndex="0" SelectionChanged="PersonalInfo_SelectionChanged"/>
+                    <ComboBox x:Name="Sheet_Size" SelectedIndex="0" SelectionChanged="SelectionChanged"/>
+                    <ComboBox x:Name="Sheet_Type" SelectedIndex="0" SelectionChanged="SelectionChanged"/>
                     <TextBlock Text="("/>
-                    <TextBox x:Name="Sheet_Tag" Text="Tag" TextChanged="PersoanlInfo_TextChanged"/>
+                    <TextBox x:Name="Sheet_Tag" Text="Tag" TextChanged="TextChanged"/>
                     <TextBlock Text="), "/>
-                    <TextBox x:Name="Sheet_Alignment" Text="unaligned" TextChanged="PersoanlInfo_TextChanged"/>
+                    <TextBox x:Name="Sheet_Alignment" Text="unaligned" TextChanged="TextChanged"/>
                 </StackPanel>
             </StackPanel>
             <!-- AC & HP & Speed -->
@@ -70,16 +70,11 @@
                     <TextBox x:Name="HitDice" Text="4d8+4"/>
                     <TextBlock Text=")"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="Sheet_MovementType" Orientation="Horizontal">
                     <TextBlock Text="Speed " FontWeight="Bold"/>
-                    <TextBox x:Name="WalkSpeed" Text="30"/>
-                    <TextBlock Text="ft, burrow "/>
-                    <TextBox x:Name="BurrowSpeed" Text="30"/>
-                    <TextBlock Text="ft, fly "/>
-                    <TextBox x:Name="FlySpeed" Text="30 (hover)"/>
-                    <TextBlock Text="ft, swim "/>
-                    <TextBox x:Name="SwimSpeed" Text="30"/>
+                    <TextBox x:Name="Sheet_WalkSpeed" Text="0"/>
                     <TextBlock Text="ft"/>
+                    <Button Content="Add Movement Type" Click="AddMovementType_Click" />
                 </StackPanel>
             </StackPanel>
             <!-- Ability Score-->

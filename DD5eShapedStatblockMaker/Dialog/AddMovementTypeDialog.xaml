@@ -1,0 +1,16 @@
+﻿<Window x:Class="DD5eShapedStatblockMaker.AddMovementTypeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DD5eShapedStatblockMaker"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="AddMovementType" Height="107.6" Width="166.4">
+
+    <Canvas>
+        <ComboBox x:Name="Sheet_MovementType" Canvas.Left="10" Canvas.Top="10" Width="139"/>
+        <Button Content="OK" Click="OK_Button_Click"  Canvas.Left="10" Canvas.Top="44" Width="49" Height="22"/>
+        <Button Content="Cancel" Click="Cancel_Button_Click" Canvas.Left="99" Canvas.Top="44" Width="50" RenderTransformOrigin="0.496,0.563" Height="22"/>
+    </Canvas>
+</Window>
