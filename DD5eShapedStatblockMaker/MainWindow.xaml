@@ -70,10 +70,9 @@
                     <TextBox x:Name="HitDice" Text="4d8+4"/>
                     <TextBlock Text=")"/>
                 </StackPanel>
-                <StackPanel x:Name="Sheet_MovementType" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Speed " FontWeight="Bold"/>
-                    <TextBox x:Name="Sheet_WalkSpeed" Text="0"/>
-                    <TextBlock Text="ft"/>
+                    <StackPanel x:Name="Sheet_MovementType" Orientation="Horizontal"/>
                     <Button Content="Add Movement Type" Click="AddMovementType_Click" />
                 </StackPanel>
             </StackPanel>

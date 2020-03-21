@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\MovementTypeControl.cs" />
     <Compile Include="Dialog\AddMovementTypeDialog.xaml.cs">
       <DependentUpon>AddMovementTypeDialog.xaml</DependentUpon>
     </Compile>

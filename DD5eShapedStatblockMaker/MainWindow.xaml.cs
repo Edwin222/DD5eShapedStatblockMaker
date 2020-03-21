@@ -1,5 +1,6 @@
 ﻿using DD5eShapedStatblockMaker.CharacterSheet;
 using DD5eShapedStatblockMaker.CharacterSheet.Definition;
+using DD5eShapedStatblockMaker.Control;
 using DD5eShapedStatblockMaker.Data.Definition;
 using System;
 using System.Windows;
@@ -11,7 +12,9 @@ namespace DD5eShapedStatblockMaker
     public partial class MainWindow : Window
     {
         readonly Character sheet;
+
         bool isLoaded;
+        MovementTypeControl movementTypeControl;
 
         public MainWindow()
         {
@@ -24,7 +27,7 @@ namespace DD5eShapedStatblockMaker
         {
             Sheet_Size.ItemsSource = Enum.GetValues(typeof(CreatureSize));
             Sheet_Type.ItemsSource = Enum.GetValues(typeof(RacialType));
-
+            movementTypeControl = new MovementTypeControl(Sheet_MovementType, TextChanged);
             isLoaded = true;
             RefreshSheet();
         }
@@ -47,28 +50,12 @@ namespace DD5eShapedStatblockMaker
         private void AddMovementType_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new AddMovementTypeDialog();
-            var result = dialog.ShowDialog();
+            dialog.ShowDialog();
 
             if (dialog.DialogResult.HasValue && dialog.DialogResult.Value == true)
             {
-                var insertIndex = Sheet_MovementType.Children.Count - 1;
-                var leadingText = new TextBlock();
-                leadingText.Text = $", {(MovementType)dialog.Sheet_MovementType.SelectedIndex} ";
-                var speedInputBox = new TextBox();
-                speedInputBox.TextChanged += new TextChangedEventHandler(TextChanged);
-                var trailingText = new TextBlock();
-                trailingText.Text = "ft";
-
-                leadingText.PreviewMouseDown += new MouseButtonEventHandler((obj, arg) =>
-                {
-                    Sheet_MovementType.Children.Remove(leadingText);
-                    Sheet_MovementType.Children.Remove(speedInputBox);
-                    Sheet_MovementType.Children.Remove(trailingText);
-                });
-
-                Sheet_MovementType.Children.Insert(insertIndex, trailingText);
-                Sheet_MovementType.Children.Insert(insertIndex, speedInputBox);
-                Sheet_MovementType.Children.Insert(insertIndex, leadingText);
+                var type = (MovementType) dialog.Sheet_MovementType.SelectedIndex;
+                movementTypeControl.SetSpeed(type, 0);
             }
         }
 
