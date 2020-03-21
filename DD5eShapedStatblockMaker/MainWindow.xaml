@@ -38,7 +38,7 @@
             </Grid.RowDefinitions>
             <!-- Personal Information -->
             <StackPanel Grid.Row="0">
-                <TextBox x:Name="Name" Text="Name" FontSize="20"/>
+                <TextBox x:Name="Name" Text="Name" FontSize="20" TextChanged="Name_TextChanged"/>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox x:Name="Size" SelectedIndex="0">
                         <ComboBoxItem Content="Medium"/>
@@ -47,9 +47,9 @@
                         <ComboBoxItem Content="Humanoid"/>
                     </ComboBox>
                     <TextBlock Text="("/>
-                    <TextBox x:Name="Tag" Text="Tag"/>
+                    <TextBox x:Name="Tag" Text="Tag" TextChanged="Tag_TextChanged"/>
                     <TextBlock Text="), "/>
-                    <TextBox x:Name="Alignment" Text="unaligned"/>
+                    <TextBox x:Name="Alignment" Text="unaligned" TextChanged="Alignment_TextChanged"/>
                 </StackPanel>
             </StackPanel>
             <!-- AC & HP & Speed -->

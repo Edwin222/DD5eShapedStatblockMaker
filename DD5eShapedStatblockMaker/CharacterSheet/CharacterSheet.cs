@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DD5eShapedStatblockMaker.Data
 {
-    public class Character
+    public class CharacterSheet
     {
         public string Name { get; set; }
         public CreatureSize Size { get; set; }
