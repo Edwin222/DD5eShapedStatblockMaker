@@ -11,20 +11,21 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+        </Grid.Resources>
         
         <!-- LeftPanel -->
         <Grid ShowGridLines="True">
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-
-                <Style TargetType="TextBox">
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-            </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -56,6 +57,9 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Armor Class " FontWeight="Bold" />
                     <TextBox x:Name="ArmorClass" Text="10"/>
+                    <TextBlock Text=" ("/>
+                    <TextBox x:Name="ArmorType" Text="Natural Armor"/>
+                    <TextBlock Text=")"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Initiative " FontWeight="Bold" />
@@ -70,13 +74,14 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Speed " FontWeight="Bold"/>
-                    <TextBox x:Name="WalkSpeed" Text="30ft"/>
-                    <TextBlock Text=", burrow "/>
-                    <TextBox x:Name="BurrowSpeed" Text="30ft"/>
-                    <TextBlock Text=", fly "/>
-                    <TextBox x:Name="FlySpeed" Text="30ft (hover)"/>
-                    <TextBlock Text=", swim "/>
-                    <TextBox x:Name="SwimSpeed" Text="30ft"/>
+                    <TextBox x:Name="WalkSpeed" Text="30"/>
+                    <TextBlock Text="ft, burrow "/>
+                    <TextBox x:Name="BurrowSpeed" Text="30"/>
+                    <TextBlock Text="ft, fly "/>
+                    <TextBox x:Name="FlySpeed" Text="30 (hover)"/>
+                    <TextBlock Text="ft, swim "/>
+                    <TextBox x:Name="SwimSpeed" Text="30"/>
+                    <TextBlock Text="ft"/>
                 </StackPanel>
             </StackPanel>
             <!-- Ability Score-->
@@ -168,7 +173,31 @@
                 </StackPanel>
             </StackPanel>
             <!-- Traits -->
-            <StackPanel Grid.Row="4">
+            <StackPanel x:Name="Trait" Grid.Row="4">
+                
+            </StackPanel>
+        </Grid>
+        
+        <!-- RightPanel-->
+        <Grid ShowGridLines="True" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Action" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Reaction" FontSize="20"/>
+
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="LegendaryAction" FontSize="20"/>
                 
             </StackPanel>
         </Grid>
