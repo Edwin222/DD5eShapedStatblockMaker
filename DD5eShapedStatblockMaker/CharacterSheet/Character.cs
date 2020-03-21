@@ -2,9 +2,11 @@
 
 namespace DD5eShapedStatblockMaker.CharacterSheet
 {
-    public class CharacterSheet
+    public class Character
     {
-        public readonly PersonalInfo PersonalInfo;
+        public PersonalInfo PersonalInfo { get; set; }
+
+        public Character() { }
 
         public void WriteData()
         {
@@ -18,6 +20,7 @@ namespace DD5eShapedStatblockMaker.CharacterSheet
         {
             var result = "";
 
+            result += "# Character\n";
             result += PersonalInfo;
 
             return result;

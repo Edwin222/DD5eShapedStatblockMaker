@@ -1,27 +1,33 @@
 ﻿using DD5eShapedStatblockMaker.Data.Definition;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DD5eShapedStatblockMaker.CharacterSheet
 {
-    public class PersonalInfo
+    public struct PersonalInfo
     {
-        public string Name { get; set; }
-        public CreatureSize Size { get; set; }
-        public RacialType Type { get; set; }
-        public string TypeTag { get; set; }
-        public string Alignment { get; set; }
+        public readonly string Name;
+        public readonly CreatureSize Size;
+        public readonly RacialType Type;
+        public readonly string TypeTag;
+        public readonly string Alignment;
+
+        public PersonalInfo(string name, CreatureSize size, RacialType type, string typeTag, string alignment)
+        {
+            Name = name;
+            Size = size;
+            Type = type;
+            TypeTag = typeTag;
+            Alignment = alignment;
+        }
 
         public override string ToString()
         {
             var result = "";
 
-            result += $"# {Name}\n";
-            result += $"## Personal Info\n";
-            result += $"* Tag: {TypeTag}\n";
+            result += $"## PersonalInfo\n";
+            result += $"* Name: {Name}\n";
+            result += $"* Size: {Size}\n";
+            result += $"* Type: {Type}\n";
+            result += $"* TypeTag: {TypeTag}\n";
             result += $"* Alignment: {Alignment}\n";
 
             return result;

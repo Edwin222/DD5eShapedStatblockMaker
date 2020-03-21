@@ -1,4 +1,6 @@
-﻿using DD5eShapedStatblockMaker.Data;
+﻿using DD5eShapedStatblockMaker.CharacterSheet;
+using DD5eShapedStatblockMaker.Data.Definition;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -6,11 +8,23 @@ namespace DD5eShapedStatblockMaker
 {
     public partial class MainWindow : Window
     {
-        readonly CharacterSheet sheet;
+        readonly Character sheet;
+        bool isLoaded;
+
         public MainWindow()
         {
-            sheet = new CharacterSheet();
+            isLoaded = false;
+            sheet = new Character();
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Sheet_Size.ItemsSource = Enum.GetValues(typeof(CreatureSize));
+            Sheet_Type.ItemsSource = Enum.GetValues(typeof(RacialType));
+
+            isLoaded = true;
+            RefreshSheet();
         }
 
         private void Window_Closed(object sender, System.EventArgs e)
@@ -18,19 +32,40 @@ namespace DD5eShapedStatblockMaker
             sheet.WriteData();
         }
 
-        private void Name_TextChanged(object sender, TextChangedEventArgs e)
+        private void PersoanlInfo_TextChanged(object sender, TextChangedEventArgs e)
         {
-            sheet.Name = (sender as TextBox).Text;
+            if (isLoaded)
+            {
+                sheet.PersonalInfo = new PersonalInfo(
+                    Sheet_Name.Text,
+                    (CreatureSize)Sheet_Size.SelectedIndex,
+                    (RacialType)Sheet_Type.SelectedIndex,
+                    Sheet_Tag.Text,
+                    Sheet_Alignment.Text);
+            }
         }
 
-        private void Alignment_TextChanged(object sender, TextChangedEventArgs e)
+        private void PersonalInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            sheet.Alignment = (sender as TextBox).Text;
+            if (isLoaded)
+            {
+                sheet.PersonalInfo = new PersonalInfo(
+                    Sheet_Name.Text,
+                    (CreatureSize)Sheet_Size.SelectedIndex,
+                    (RacialType)Sheet_Type.SelectedIndex,
+                    Sheet_Tag.Text,
+                    Sheet_Alignment.Text);
+            }
         }
 
-        private void Tag_TextChanged(object sender, TextChangedEventArgs e)
+        void RefreshSheet()
         {
-            sheet.TypeTag = (sender as TextBox).Text;
+            sheet.PersonalInfo = new PersonalInfo(
+                Sheet_Name.Text,
+                (CreatureSize)Sheet_Size.SelectedIndex,
+                (RacialType)Sheet_Type.SelectedIndex,
+                Sheet_Tag.Text,
+                Sheet_Alignment.Text);
         }
     }
 }
