@@ -13,6 +13,11 @@ namespace DD5eShapedStatblockMaker
             InitializeComponent();
         }
 
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            sheet.WriteData();
+        }
+
         private void Name_TextChanged(object sender, TextChangedEventArgs e)
         {
             sheet.Name = (sender as TextBox).Text;

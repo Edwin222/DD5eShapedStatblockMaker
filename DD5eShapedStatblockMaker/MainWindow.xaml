@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DD5eShapedStatblockMaker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="850">
+        Title="MainWindow" Height="800" Width="850"
+        Closed="Window_Closed">
     <Grid ShowGridLines="True" Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
