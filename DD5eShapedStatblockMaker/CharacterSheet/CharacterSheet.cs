@@ -1,24 +1,14 @@
-﻿using DD5eShapedStatblockMaker.Data.Definition;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
-namespace DD5eShapedStatblockMaker.Data
+namespace DD5eShapedStatblockMaker.CharacterSheet
 {
     public class CharacterSheet
     {
-        public string Name { get; set; }
-        public CreatureSize Size { get; set; }
-        public RacialType Type { get; set; }
-        public string TypeTag { get; set; }
-        public string Alignment { get; set; }
+        public readonly PersonalInfo PersonalInfo;
 
         public void WriteData()
         {
-            using(var streamWriter = new StreamWriter(new FileStream($"{Name}.sheet.md", FileMode.Create, FileAccess.Write)))
+            using(var streamWriter = new StreamWriter(new FileStream($"{PersonalInfo.Name}.sheet.md", FileMode.Create, FileAccess.Write)))
             {
                 streamWriter.Write(ToMarkdownData());
             }
@@ -28,10 +18,7 @@ namespace DD5eShapedStatblockMaker.Data
         {
             var result = "";
 
-            result += $"# {Name}\n";
-            result += $"## Personal Info\n";
-            result += $"* Tag: {TypeTag}\n";
-            result += $"* Alignment: {Alignment}\n";
+            result += PersonalInfo;
 
             return result;
         }
